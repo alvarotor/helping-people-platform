@@ -2,6 +2,24 @@
 
 These instructions apply to the infrastructure and operations repository.
 
+## Infrastructure as Code standard
+
+OpenTofu is the infrastructure-as-code tool for this project. Store OpenTofu configuration in this repository, keep state in an approved remote backend, and use reviewed `tofu plan` output before any apply. Do not introduce Terraform configuration or commands for new infrastructure work.
+
+The repository must separate reusable modules from environment roots, for example:
+
+```text
+infra/
+├── modules/
+├── environments/
+│   ├── dev/
+│   ├── staging/
+│   └── production/
+└── README.md
+```
+
+Ephemeral test environments must use unique names, isolated state, explicit expiry, and automatic cleanup. Production applies always require explicit human approval.
+
 ## Repository ownership
 
 This repository owns:
